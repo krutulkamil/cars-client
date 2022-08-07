@@ -38,7 +38,7 @@ const Logo: FunctionComponent = (): JSX.Element => {
     return (
         <LogoContainer>
             <Image>
-                <img src={CarLogoImg} alt="logo image"/>
+                <img src={CarLogoImg} alt="logo"/>
             </Image>
             <LogoText>Yourcar.</LogoText>
         </LogoContainer>
