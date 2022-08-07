@@ -8,6 +8,7 @@ import Marginer from "../../components/marginer";
 import BookingSteps from "./bookingSteps";
 import AboutUs from "./aboutUs";
 import TopCars from "./topCars";
+import Footer from "../../components/footer";
 
 const PageContainer = styled.div`
     ${tw`
@@ -33,6 +34,7 @@ const HomePage: FunctionComponent = (): JSX.Element => {
             <AboutUs />
             <Marginer direction="vertical" margin="8em" />
             <TopCars />
+            <Footer />
         </PageContainer>
     );
 };
