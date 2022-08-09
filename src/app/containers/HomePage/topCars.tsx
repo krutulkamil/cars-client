@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useState} from "react";
+import React, {FunctionComponent, useEffect, useState} from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import Car from "../../components/car";
@@ -7,6 +7,7 @@ import Carousel, {Dots, slidesToShowPlugin} from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import {useMediaQuery} from "react-responsive";
 import {SCREENS} from "../../components/responsive";
+import carService from "../../services/carService";
 
 const TopCarsContainer = styled.div`
   ${tw`
@@ -49,6 +50,14 @@ const TopCars: FunctionComponent = (): JSX.Element => {
 
     const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
 
+    const fetchTopCars = async () => {
+        const cars = await carService.getCars().catch((err) => {
+            console.log("Error:", err);
+        });
+
+        console.log("Cars ", cars);
+    }
+
     const testCar1: ICar = {
         name: "Audi S3 Car",
         mileage: "10k",
@@ -67,7 +76,11 @@ const TopCars: FunctionComponent = (): JSX.Element => {
         monthlyPrice: 1500,
         gearType: "Auto",
         gas: "Petrol"
-    }
+    };
+
+    useEffect(() => {
+        fetchTopCars();
+    }, []);
 
     const cars = [(<Car {...testCar1} />), (<Car {...testCar2} />), (<Car {...testCar2} />), (
             <Car {...testCar1} />), (<Car {...testCar2} />), (<Car {...testCar1} />), (
